@@ -20,7 +20,6 @@ import { useChat } from "ai/react";
 import clsx from "clsx";
 import OpenAI from "openai";
 import { useEffect, useRef, useState } from "react";
-import InteractiveAvatarTextInput from "./InteractiveAvatarTextInput";
 import ConsoleOutput from "./ConsoleOutput";
 
 const openai = new OpenAI({
