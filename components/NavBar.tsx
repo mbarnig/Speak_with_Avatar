@@ -16,7 +16,7 @@ export default function NavBar() {
       <NavbarBrand>
         <div className="bg-gradient-to-r from-orange-500 to-yellow-300 bg-clip-text ml-4">
           <p className="text-xl font-semibold text-transparent">
-            Interactive SWA (Speak with Avatar) Demo based on HeyGen SDK
+            Interactive SWMA (Speak with my Avatar) Demo based on HeyGen SDK
           </p>
         </div>
       </NavbarBrand>
