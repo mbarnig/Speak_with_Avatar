@@ -72,6 +72,33 @@ export default function InteractiveAvatarChat() {
     ],
   });
 
+  async function checkPassword() {
+  try {
+    const secret_password = process.env.NEXT_PUBLIC_SESSION_START_PASSWORD;  
+    
+    const entered_password  = prompt("Enter your personal password to start a session");
+
+    if (!entered_password) {
+      setDebug("No password entered.");
+      return false;
+    }
+
+    console.log("password entered: ", entered_password);
+
+    if (entered_password === secret_password) {
+      return true;
+    } else {
+      return false;
+    }
+    
+  } catch (error) {
+    console.error('Error validating password:', error);
+    // Assuming setDebug is a function available in the context
+    setDebug("Error validating password.");
+    return false;
+  }
+}
+  
   async function fetchAccessToken() {
     try {
       const response = await fetch("/api/get-access-token", {
@@ -87,6 +114,15 @@ export default function InteractiveAvatarChat() {
   }
 
   async function startSession() {
+    // Call the function to verify the password using HuggingFace secret
+     const passwordValid = await checkPassword();
+     if (!passwordValid) {
+        setDebug("Invalid password, session cannot be started.");
+        setIsLoadingSession(false);
+        return;
+    } 
+    
+    // Continue with the session setup if password is valid    
     setIsLoadingSession(true);
     await updateToken();
     if (!avatar.current) {
